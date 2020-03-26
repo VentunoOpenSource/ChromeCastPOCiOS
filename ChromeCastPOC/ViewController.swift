@@ -43,10 +43,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let castButton = GCKUICastButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        let castButton = GCKUICastButton(frame: CGRect(x: 0, y: 0, width: 48, height: 48))
         castButton.tintColor = UIColor.gray
         //navigationItem.rightBarButtonItem = UIBarButtonItem(customView: castButton)
-        
         mView.addSubview(castButton)
         
         let castContext = GCKCastContext.sharedInstance()

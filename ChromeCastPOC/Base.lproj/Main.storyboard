@@ -33,12 +33,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gms-AJ-FGh">
-                                <rect key="frame" x="87" y="384" width="240" height="128"/>
+                                <rect key="frame" x="183" y="424" width="48" height="48"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="Udh-vD-neJ"/>
+                                    <constraint firstAttribute="width" constant="48" id="1Sh-re-73T"/>
+                                    <constraint firstAttribute="height" constant="48" id="Udh-vD-neJ"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cast Button in a custom view" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFO-c3-xSk">
+                                <rect key="frame" x="0.0" y="482" width="414" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9g9-Aj-h9W">
                                 <rect key="frame" x="0.0" y="804" width="414" height="58"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -50,11 +57,13 @@
                         <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9g9-Aj-h9W" secondAttribute="trailing" id="IeC-p6-JZ6"/>
+                            <constraint firstItem="xFO-c3-xSk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Nnc-3b-XOZ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xFO-c3-xSk" secondAttribute="trailing" id="Pph-Qu-BQf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9g9-Aj-h9W" secondAttribute="bottom" id="UnG-Bx-2VB"/>
                             <constraint firstItem="gms-AJ-FGh" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="adb-sH-Wkj"/>
+                            <constraint firstItem="xFO-c3-xSk" firstAttribute="top" secondItem="gms-AJ-FGh" secondAttribute="bottom" constant="10" id="h2f-UZ-MyF"/>
                             <constraint firstItem="gms-AJ-FGh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hAD-1z-7hr"/>
                             <constraint firstItem="9g9-Aj-h9W" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vM3-gh-nvF"/>
-                            <constraint firstItem="gms-AJ-FGh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="yuE-Kt-xDm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
