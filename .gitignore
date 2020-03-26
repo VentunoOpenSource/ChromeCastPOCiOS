@@ -9,6 +9,7 @@
 *.xcuserstate
 ChromeCastPOC.xcworkspace/
 xcuserdata/
+*.lock
 
 # PODS
 dist/
