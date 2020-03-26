@@ -16,9 +16,13 @@ class ViewController: UIViewController {
     
     let kReceiverAppID = kGCKDefaultMediaReceiverApplicationID
     let kDebugLoggingEnabled = true
+    let kCastControlBarsAnimationDuration: TimeInterval = 0.20
+    let appDelegate = (UIApplication.shared.delegate as? AppDelegate)
     
     @IBOutlet weak var mView: UIView!
     @IBOutlet weak var _miniMediaControlsContainerView: UIView!
+    
+    @IBOutlet weak var _miniMediaControlsHeightConstraint: NSLayoutConstraint!
     
     private var miniMediaControlsViewController: GCKUIMiniMediaControlsViewController!
     
@@ -26,7 +30,7 @@ class ViewController: UIViewController {
     var miniMediaControlsViewEnabled = false {
       didSet {
         if isViewLoaded {
-         // updateControlBarsVisibility()
+          updateControlBarsVisibility()
         }
       }
     }
@@ -41,19 +45,22 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
+       
+        
+        // Do any additional setup after loading the view.
+        //_miniMediaControlsContainerView?.isHidden = true
         let castButton = GCKUICastButton(frame: CGRect(x: 0, y: 0, width: 48, height: 48))
         castButton.tintColor = UIColor.gray
         //navigationItem.rightBarButtonItem = UIBarButtonItem(customView: castButton)
         mView.addSubview(castButton)
         
         let castContext = GCKCastContext.sharedInstance()
-           miniMediaControlsViewController = castContext.createMiniMediaControlsViewController()
-           miniMediaControlsViewController.delegate = self
-        //   updateControlBarsVisibility()
-           installViewController(miniMediaControlsViewController,
-                                 inContainerView: _miniMediaControlsContainerView)
+        miniMediaControlsViewController = castContext.createMiniMediaControlsViewController()
+        miniMediaControlsViewController.delegate = self
+        updateControlBarsVisibility()
+        installViewController(miniMediaControlsViewController,
+                              inContainerView: _miniMediaControlsContainerView)
     }
 
 }
@@ -62,6 +69,7 @@ extension ViewController{
  
     
     func playVideoRemotely() {
+       // _miniMediaControlsContainerView?.isHidden = false
        GCKCastContext.sharedInstance().presentDefaultExpandedMediaControls()
 
        // Define media metadata.
@@ -97,38 +105,36 @@ extension ViewController:GCKRequestDelegate,GCKSessionManagerListener,GCKRemoteM
     func sessionManager(_: GCKSessionManager, didStart session: GCKSession) {
       print("MediaViewController: sessionManager didStartSession \(session)")
         session.remoteMediaClient?.add(self)
+        
+        miniMediaControlsViewEnabled = true
         playVideoRemotely()
       
     }
 
     func sessionManager(_: GCKSessionManager, didResumeSession session: GCKSession) {
       print("MediaViewController: sessionManager didResumeSession \(session)")
-     
+        miniMediaControlsViewEnabled = true
+        
+        
     }
 
     func sessionManager(_: GCKSessionManager, didEnd _: GCKSession, withError error: Error?) {
       print("session ended with error: \(String(describing: error))")
-//      let message = "The Casting session has ended.\n\(String(describing: error))"
-//      if let window = appDelegate?.window {
-//        Toast.displayMessage(message, for: 3, in: window)
-//      }
+      
       
     }
 
     func sessionManager(_: GCKSessionManager, didFailToStartSessionWithError error: Error?) {
         print("Failed to start a session")
-//      if let error = error {
-//        showAlert(withTitle: "Failed to start a session", message: error.localizedDescription)
-//      }
+      if let error = error {
+        showAlert(withTitle: "Failed to start a session", message: error.localizedDescription)
+      }
     }
 
     func sessionManager(_: GCKSessionManager,
                         didFailToResumeSession _: GCKSession, withError _: Error?) {
-//      if let window = UIApplication.shared.delegate?.window {
-//        Toast.displayMessage("The Casting session could not be resumed.",
-//                             for: 3, in: window)
-//      }
-      
+    
+      print("session didFailToResumeSession")
     }
     
 }
@@ -136,8 +142,9 @@ extension ViewController:GCKRequestDelegate,GCKSessionManagerListener,GCKRemoteM
 
 extension ViewController{
     // MARK: - Internal methods
-/*
+
     func updateControlBarsVisibility() {
+        print("miniMediaControlsViewEnabled",miniMediaControlsViewEnabled,miniMediaControlsViewController.active)
       if miniMediaControlsViewEnabled, miniMediaControlsViewController.active {
         _miniMediaControlsHeightConstraint.constant = miniMediaControlsViewController.minHeight
         view.bringSubviewToFront(_miniMediaControlsContainerView)
@@ -148,7 +155,7 @@ extension ViewController{
         self.view.layoutIfNeeded()
       })
       view.setNeedsLayout()
-    }*/
+    }
 
     func installViewController(_ viewController: UIViewController?, inContainerView containerView: UIView) {
       if let viewController = viewController {
@@ -168,7 +175,7 @@ extension ViewController{
 }
 extension ViewController: GCKUIMiniMediaControlsViewControllerDelegate{
     func miniMediaControlsViewController(_ miniMediaControlsViewController: GCKUIMiniMediaControlsViewController, shouldAppear: Bool) {
-        
+         updateControlBarsVisibility()
     }
     
    
@@ -185,4 +192,17 @@ extension ViewController: GCKLoggerDelegate{
        }
      }
 }
+
+extension ViewController{
+    func showAlert(withTitle title: String,message: String) {
+       let alertController = UIAlertController(title: title,
+                                               message: message,
+                                               preferredStyle: UIAlertController.Style.alert)
+       let action = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil)
+       alertController.addAction(action)
+
+       present(alertController, animated: true, completion: nil)
+     }
+}
+
 

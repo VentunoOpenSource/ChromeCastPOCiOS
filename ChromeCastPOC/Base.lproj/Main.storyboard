@@ -46,30 +46,30 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9g9-Aj-h9W">
-                                <rect key="frame" x="0.0" y="804" width="414" height="58"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C2l-d2-kEt">
+                                <rect key="frame" x="0.0" y="804" width="414" height="48"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="58" id="xL5-kU-pju"/>
+                                    <constraint firstAttribute="height" constant="48" id="szf-8Q-1ue"/>
                                 </constraints>
-                            </view>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9g9-Aj-h9W" secondAttribute="trailing" id="IeC-p6-JZ6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="C2l-d2-kEt" secondAttribute="trailing" id="2er-Hh-83z"/>
                             <constraint firstItem="xFO-c3-xSk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Nnc-3b-XOZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xFO-c3-xSk" secondAttribute="trailing" id="Pph-Qu-BQf"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9g9-Aj-h9W" secondAttribute="bottom" id="UnG-Bx-2VB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="C2l-d2-kEt" secondAttribute="bottom" constant="10" id="QzI-kh-wIc"/>
                             <constraint firstItem="gms-AJ-FGh" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="adb-sH-Wkj"/>
+                            <constraint firstItem="C2l-d2-kEt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dSL-vF-jid"/>
                             <constraint firstItem="xFO-c3-xSk" firstAttribute="top" secondItem="gms-AJ-FGh" secondAttribute="bottom" constant="10" id="h2f-UZ-MyF"/>
                             <constraint firstItem="gms-AJ-FGh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hAD-1z-7hr"/>
-                            <constraint firstItem="9g9-Aj-h9W" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vM3-gh-nvF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="fv6-dp-EjA"/>
                     <connections>
-                        <outlet property="_miniMediaControlsContainerView" destination="9g9-Aj-h9W" id="Q6n-3s-MxV"/>
+                        <outlet property="_miniMediaControlsContainerView" destination="C2l-d2-kEt" id="ffK-1o-1l8"/>
+                        <outlet property="_miniMediaControlsHeightConstraint" destination="szf-8Q-1ue" id="44e-OF-XqB"/>
                         <outlet property="mView" destination="gms-AJ-FGh" id="kxd-Py-WxB"/>
                     </connections>
                 </viewController>

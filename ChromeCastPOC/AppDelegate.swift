@@ -22,8 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
 //        GCKCastContext.sharedInstance().useDefaultExpandedMediaControls = true
-//        window?.clipsToBounds = true
-
+        window?.clipsToBounds = true
+        window = UIWindow(frame: UIScreen.main.bounds)
         
         setupChromeCastSDK()
         return true
@@ -82,8 +82,8 @@ extension AppDelegate{
         window?.rootViewController = castContainerVC
         window?.makeKeyAndVisible()
         */
-        let rootContainerVC = (window?.rootViewController as? ViewController)
-        rootContainerVC?.miniMediaControlsViewEnabled = true
+//        let rootContainerVC = (window?.rootViewController as? ViewController)
+//        rootContainerVC?.miniMediaControlsViewEnabled = true
 //        if let window = UIApplication.shared.delegate?.window {}
     }
 }
